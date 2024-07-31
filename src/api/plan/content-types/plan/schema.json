@@ -10,79 +10,153 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": false
     },
-    "planMainImage": {
+    "displayImage": {
       "type": "media",
       "multiple": false,
       "required": true,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
-    "planIntro": {
+    "intro": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "text",
       "required": true,
       "maxLength": 300
     },
     "bedrooms": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "integer",
       "required": true
     },
     "bathrooms": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "integer",
       "required": true
     },
-    "planBanner": {
+    "bannerImage": {
       "type": "media",
       "multiple": false,
       "required": true,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
-    "planImages": {
+    "galleryImages": {
       "type": "media",
       "multiple": true,
       "required": true,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
-    "planBackgroundBanner": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "planContent": {
+    "content": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "blocks",
       "required": true
     },
-    "propertyType": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::property-type.property-type"
-    },
-    "featured": {
+    "isFeatured": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "type": "boolean",
       "default": false,
+      "required": true
+    },
+    "plinthArea": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "biginteger",
+      "required": true
+    },
+    "floorPlanPDF": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "waterFormLink": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "designContractLink": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
       "required": true
     },
     "finishTypes": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::finish.finish"
+      "target": "api::finish-type.finish-type"
     },
-    "plinthArea": {
-      "type": "biginteger",
-      "required": true
+    "propertyType": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::property-type.property-type"
     }
   }
 }
