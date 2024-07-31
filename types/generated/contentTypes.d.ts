@@ -788,6 +788,118 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiFinishFinish extends Schema.CollectionType {
+  collectionName: 'finishes';
+  info: {
+    singularName: 'finish';
+    pluralName: 'finishes';
+    displayName: 'Finish Type';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    unitPrice: Attribute.BigInteger & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::finish.finish',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::finish.finish',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPlanPlan extends Schema.CollectionType {
+  collectionName: 'plans';
+  info: {
+    singularName: 'plan';
+    pluralName: 'plans';
+    displayName: 'Plan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    planMainImage: Attribute.Media<'images'> & Attribute.Required;
+    planIntro: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    bedrooms: Attribute.Integer & Attribute.Required;
+    bathrooms: Attribute.Integer & Attribute.Required;
+    planBanner: Attribute.Media<'images'> & Attribute.Required;
+    planImages: Attribute.Media<'images', true> & Attribute.Required;
+    planBackgroundBanner: Attribute.Media<'images'> & Attribute.Required;
+    planContent: Attribute.Blocks & Attribute.Required;
+    propertyType: Attribute.Relation<
+      'api::plan.plan',
+      'oneToOne',
+      'api::property-type.property-type'
+    >;
+    featured: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    finishTypes: Attribute.Relation<
+      'api::plan.plan',
+      'oneToMany',
+      'api::finish.finish'
+    >;
+    plinthArea: Attribute.BigInteger & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::plan.plan', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::plan.plan', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPropertyTypePropertyType extends Schema.CollectionType {
+  collectionName: 'property_types';
+  info: {
+    singularName: 'property-type';
+    pluralName: 'property-types';
+    displayName: 'Property Type';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::property-type.property-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::property-type.property-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +918,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::finish.finish': ApiFinishFinish;
+      'api::plan.plan': ApiPlanPlan;
+      'api::property-type.property-type': ApiPropertyTypePropertyType;
     }
   }
 }
