@@ -157,6 +157,24 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::property-type.property-type"
+    },
+    "livingRooms": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "required": true
+    },
+    "kitchens": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "required": true
     }
   }
 }
